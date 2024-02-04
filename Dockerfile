@@ -5,7 +5,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get upgrade -yq \
   && wget https://download.foxblog.click/mongodb7/latest/armv8-a/libstdc%2B%2B6.deb && dpkg -i libstdc++6.deb && rm libstdc++6.deb \
   && wget https://download.foxblog.click/mongodb7/latest/armv8-a/mongodb-server.deb && dpkg -i mongodb-server.deb \
   && wget https://download.foxblog.click/unifi/latest/debian_universal/unifi_sysvinit_all.deb \
-  && dpkg -i unifi_sysvinit_all.deb && rm unifi_sysvinit_all.deb
+  && dpkg -i unifi_sysvinit_all.deb && rm unifi_sysvinit_all.deb \
+  && sed -i 's/UNIFI_JVM_OPTS=-Xmx1024M/UNIFI_JVM_OPTS=-Xmx256M/g' /lib/systemd/system/unifi.service
 
 WORKDIR /scripts
 
